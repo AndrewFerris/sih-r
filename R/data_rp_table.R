@@ -1,12 +1,12 @@
 #' @title Example data for table_rp
-#' 
+#'
 #' @description An example data source that is used for
 #' demonstrating the rp_table function.
-#' 
+#'
 #' @author Andrew Ferris
-#' 
-#' @example data(data_rp_table)
-#' 
+#'
+#' @example data_rp_table
+#'
 #' @export
 
 data_rp_table <- data.frame(c("A1", "A1", "A1", "B1", "C1"),
@@ -18,4 +18,4 @@ data_rp_table <- data.frame(c("A1", "A1", "A1", "B1", "C1"),
 row.names(data_rp_table) <- c("R1", "R2", "R3", "R4", "R5")
 colnames(data_rp_table) <- c("Col1", "Col2", "Col3", "Col4", "Col5")
 data_rp_table <- as.matrix(data_rp_table)
-saveRDS(object = data_rp_table, file = "data_rp_table.rds")
+save(data_rp_table, file="data/data_rp_table.rda")

@@ -1,19 +1,42 @@
-#t_mat_rp
-#allows the importation of transition matrices into the sankey plots via the riverplot package
+#' @name t_mat_rp
+#'
+#' @title Create a Sankey Plot from Transition Matrix
+#'
+#' @description Create a Sankey Plot from Transition Matrix
+#'
+#' @section Known Problems:
+#' There is no style input at this time. This means that
+#' all Sankey plots come out as greyscale.
+#' Labels are not wrapped and hard to clear, making the
+#' interpretation of the image difficult.
+#' Variables are also no ordered, meaning that "rivers"
+#' may not be straight even though they should be.
+#'
+#' @param table A table of class matrix with m columns
+#' and n rows where each element is the value of the
+#' movement.
+#'
+#' @return A Sankey Plot
+#' @return The Sankey Plot object, a list of edges and
+#' nodes.
+#'
+#' @author Andrew Ferris
+#'
+#' @example t_mat_rp(data_t_mat_rp)
+#'
+#' @export
 
-#create a test data frame
-transition_matrix <- matrix(c(1,2,3,4,5,6,7,8,9),nrow = 3, ncol = 3)
-row.names(transition_matrix) <- c("A", "B", "C")
-colnames(transition_matrix) <- c("D", "E", "F")
+globalVariables(c("unmatrix", "plot"))
+
+#load the required packages
+library(gdata, quietly = TRUE, warn.conflicts = FALSE)
+library(riverplot, quietly = TRUE, warn.conflicts = FALSE)
 
 t_mat_rp <- function(transition_matrix){
-  #load the required packages
-  library(gdata, quietly = TRUE)
-  library(riverplot, quietly = TRUE)
 
   #create the edges object
-  N1 <- gsub( "*:.", "", names(unmatrix(transition_matrix)))
-  N2 <- gsub( ".*:", "", names(unmatrix(transition_matrix)))
+  N1 <- gsub( "*:.", "", names(gdata::unmatrix(transition_matrix)))
+  N2 <- gsub( ".*:", "", names(gdata::unmatrix(transition_matrix)))
   Value <- c(transition_matrix)
   edges <- data.frame(N1, N2, Value, stringsAsFactors = F)
   edges
@@ -33,5 +56,3 @@ t_mat_rp <- function(transition_matrix){
   #plot object
   plot(rp)
 }
-
-t_mat_rp(df)
