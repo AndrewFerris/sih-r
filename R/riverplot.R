@@ -315,7 +315,7 @@ autoscale <- function(x) {
 
   ns <- max(x$edges$Value)
 
-  if(ns ==0) return(1) # not our problem
+  if(ns == 0) return(1) #not our problem
 
   yscale <- 0.15 * yrange / ns
   return(yscale)
